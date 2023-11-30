@@ -1,0 +1,62 @@
+/* 应用于整个页面的样式 */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: #808080; /* 整个页面的背景色设置为灰色 */
+}
+
+.img-comp-container {
+    position: relative;
+    width: 100%; /* 容器宽度为浏览器宽度 */
+    background-color: #808080; /* 为容器也设置灰色背景 */
+}
+
+.img-comp-img {
+    display: block;
+    width: 100%; /* 图片宽度为浏览器宽度 */
+    height: auto; /* 高度自动调整以保持比例 */
+}
+
+.img-comp-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    height: 100%;
+    width: 50%; /* 初始覆盖50% */
+}
+
+.slider {
+    position: absolute;
+    z-index: 9;
+    cursor: ew-resize;
+    background-color: #808080; /* 灰色滑动条 */
+    height: 100%;
+    width: 10px; /* 滑动条宽度 */
+    left: 50%;
+}
+
+/* 双向箭头样式 */
+.slider:before, .slider:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+}
+
+.slider:before {
+    left: 2px;
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+}
+
+.slider:after {
+    right: 2px;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+}

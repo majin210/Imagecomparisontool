@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>图片比较工具</title>
+    <style>
+        .img-comp-container {
+            position: relative;
+            width: max-content; /* 容器宽度适应图片 */
+        }
+
+        .img-comp-img {
+            display: block; /* 防止图片间出现空隙 */
+            width: auto; /* 保持图片原始尺寸 */
+            height: auto;
+        }
+
+        .img-comp-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .slider {
+            position: absolute;
+            z-index: 9;
+            cursor: ew-resize;
+            background-color: red; /* 明显的颜色以确保可见性 */
+            height: 100%;
+            width: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="img-comp-container">
+    <img src="C:\Users\Admin\Desktop\Image comparison tool\01.jfif" class="img-comp-img">
+    <div class="img-comp-overlay">
+        <img src="C:\Users\Admin\Desktop\Image comparison tool\02.jfif" class="img-comp-img" style="position: absolute; left: 0;">
+    </div>
+    <div class="slider" id="slider" style="left: 50%;"></div>
+</div>
+
+<script>
+    var slider = document.getElementById("slider");
+    var overlay = document.querySelector(".img-comp-overlay");
+
+    slider.onmousedown = function (event) {
+        event.preventDefault();
+        document.onmousemove = slideMove;
+        document.onmouseup = function () {
+            document.onmousemove = null;
+        };
+    };
+
+    function slideMove(e) {
+        var rect = slider.parentElement.getBoundingClientRect();
+        var x = e.clientX - rect.left;
+        if (x < 0) x = 0;
+        if (x > rect.width) x = rect.width;
+        overlay.style.width = x + "px";
+        slider.style.left = x + "px";
+    }
+</script>
+
+</body>
+</html>
